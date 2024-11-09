@@ -23,9 +23,12 @@ mongoose
 
 const superheroSchema = new mongoose.Schema({
     superheroName: {type: String, required: true},
-    originalName: {type: String, required: true},
-    abilities: {type: String},
+    originalName: { type: String, required: true },
     description: {type: String},
+    abilities: { type: String },
+    weakness: { type: String },
+    backstory: { type: String },
+    reason: { type: String },
 })
 
 const Superhero = mongoose.model("Superhero", superheroSchema)
@@ -43,8 +46,11 @@ app.post("/api/superheroes", async (req, res) => {
     const newSuperhero = new Superhero({
         superheroName: req.body.superheroName,
         originalName: req.body.originalName,
-        abilities: req.body.abilities,
         description: req.body.description,
+        abilities: req.body.abilities,
+        weakness: req.body.weakness,
+        backstory: req.body.backstory,
+        reason: req.body.reason
     })
 
     try {
