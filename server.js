@@ -55,6 +55,31 @@ app.post("/api/superheroes", async (req, res) => {
     }
 })
 
+app.put ("/api/superheroes/:id", async (req, res) => {
+    try { 
+        const updatedSuperhero = await Superhero.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        if (updatedSuperhero) {
+            res.status(200).json(updatedSuperhero)
+         } else {
+            res.status(404).json({ message: `Superhero with id: ${req.params.id} not found` })
+         }
+    } catch (err) {
+        res.status(500).json({message:"Error occured in updating",err})
+    }
+})
+
+app.delete("/api/superheroes/:id", async (req, res) => {
+    try {
+        const deletedSuperhero = await Superhero.findByIdAndDelete(req.params.id)
+        if (deletedSuperhero) {
+            res.status(200).json({ message: `Superhero with id: ${req.params.id} deleted` })
+        } else {
+            res.status(404).json({ message: `Superhero with id: ${req.params.id} not found` })
+        }
+    } catch (err) {
+        res.status(500).json({message:"Error occured in deleting",err})
+    }
+})
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
