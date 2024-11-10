@@ -52,7 +52,7 @@ app.post("/api/superheroes", async (req, res) => {
         backstory: req.body.backstory,
         reason: req.body.reason,
         contributor: req.body.contributor,
-        comments: req.body.comments
+        comment: req.body.comment
     })
 
     try {
