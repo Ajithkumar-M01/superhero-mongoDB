@@ -29,7 +29,7 @@ const superheroSchema = new mongoose.Schema({
     backstory: { type: String },
     reason: { type: String },
     contributor: { type: String },
-    comments: {type: String},
+    comment: {type: String},
 })
 
 const Superhero = mongoose.model("Superhero", superheroSchema)
